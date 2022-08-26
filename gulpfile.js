@@ -10,14 +10,11 @@ const babel = require('gulp-babel')
 function js(cb) {
     src('src/*.js')
         .pipe(sourceMap.init())
-        .pipe(babel({
-            presets: ['@babel/preset-env']
-        }))
         .pipe(obfuscate({
             compact: true
         }))
-        .pipe(rename({extname: '.min.js'}))
         .pipe(sourceMap.write())
+        .pipe(rename({extname: '.min.js'}))
         .pipe(dest('public/assets/js/'))
     cb()
 }
